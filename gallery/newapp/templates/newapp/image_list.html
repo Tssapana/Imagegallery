@@ -1,0 +1,19 @@
+{%if request.user.is_authenticated%}
+<h4>you are logged in here as {{request.user.username}}</h4>
+<!-- <button value="submit">logout</button> -->
+<a href="{%url 'logout'%}">logout</a>
+{%else%}
+<a href="{%url 'login'%}">login</a>
+
+
+{%endif%}
+ 
+{% for image in images %}
+    <div>
+        <a href="{{ image.image_file.url }}">
+            <img height="100" width="100" src="{{ image.image_file.url }}" alt="{{ image.title }}" />
+        </a>
+        <p>{{ image.title }}</p>
+        <p>{{ image.description }}</p>
+    </div>
+{% endfor %}
